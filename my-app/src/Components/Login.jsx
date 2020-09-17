@@ -1,7 +1,10 @@
 import React from "react"
 import "./style.css"
 import axios from "axios"
+import Form from "react-bootstrap/Form"
 import Dashboard from "./Dashboard"
+import Button from "react-bootstrap/Button"
+import Container from "react-bootstrap/Container"
 
 export default class Login extends React.Component {
     constructor(props) {
@@ -22,16 +25,16 @@ export default class Login extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        const data={
+        const data = {
             user_email: this.state.email,
             password: this.state.password,
             org_domain: "ft99lgl2"
         }
-        axios.post("https://ft99lgl2.revvsales.com/api/v2/auth/initiate-auth",data, {
+        axios.post("https://ft99lgl2.revvsales.com/api/v2/auth/initiate-auth", data, {
             headers: {
                 "Content-Type": "application/json",
-                "GrantType":"password",
-            },        
+                "GrantType": "password",
+            },
         }).then((res) => {
             console.log(res)
             this.handleData(res.data);
@@ -49,46 +52,51 @@ export default class Login extends React.Component {
 
     render() {
         console.log(this.state)
-        if(this.state.token===""){
+        if (this.state.token === "") {
             return (
                 <div>
-                    <div className="container">
-                        <h1>Form</h1>
-                        <div className="login-container">
-                            <div className="flex">
-                                <div className="flex1">
-                                    <div className="username">Email : &nbsp;</div>
-                                    <div className="password">Password :</div>
-                                </div>
-                                <div className="flex1">
-                                    <input 
-                                        type="email"
-                                        name="email"
-                                        className="input-username" 
-                                        placeholder="Enter email" 
-                                        onChange={this.handleChange} 
-                                        required
-                                    /><br/>
-                                    <input 
-                                        type="password" 
-                                        name="password"
-                                        className="input-password" 
-                                        placeholder="Enter password" 
-                                        onChange={this.handleChange} 
-                                        required
-                                    />
-                                </div>
-                            </div>
-                            <div style={{marginTop:"4%"}}>
-                                <button className="submit" onClick={this.handleSubmit}>Submit</button>
-                            </div>
-                        </div>
-                    </div>
+                <h1 style={{marginTop:"2%"}}>Here's Login Form!</h1>
+                <p><i>(It's absolutely Free)</i></p>
+                <Container style={{marginLeft:"40%"}}>
+                    <Form>
+                        <Form.Group controlId="formBasicEmail">
+                            <Form.Label>Email address</Form.Label>
+                            <Form.Check
+                                type="email" 
+                                placeholder="Enter email"
+                                name="email"
+                                onChange={this.handleChange}
+                                required 
+                            />
+                            <Form.Text className="text-muted">
+                                We'll never share your email with anyone else.
+                            </Form.Text>
+                        </Form.Group>
+
+                        <Form.Group controlId="formBasicPassword">
+                            <Form.Label>Password</Form.Label>
+                            <Form.Check 
+                                type="password"
+                                placeholder="Password" 
+                                name="password"
+                                onChange={this.handleChange} 
+                                required
+                            />
+                        </Form.Group>
+                        <Form.Group controlId="formBasicCheckbox">
+                            <Form.Check type="checkbox" label="Remember me" />
+                        </Form.Group>
+                        <Button variant="primary" onClick={this.handleSubmit} type="submit">
+                            Submit
+                        </Button>
+                    </Form>
+                   </Container>
                 </div>
+
             )
         }
-        else{
-            return <Dashboard email={this.state.email} token={this.state.token}/>
+        else {
+            return <Dashboard email={this.state.email} token={this.state.token} />
         }
     }
 }

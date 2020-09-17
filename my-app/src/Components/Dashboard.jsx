@@ -1,4 +1,6 @@
 import React, { Component } from "react"
+import Modal from "react-bootstrap/Modal"
+import Button from "react-bootstrap/Button"
 
 export default class DashBoard extends Component {
     constructor(props) {
@@ -13,10 +15,19 @@ export default class DashBoard extends Component {
         console.log(email, token)
         return (
             <>
-                <div>
-                    <h4>Email : {email}</h4>
-                    <h4>token : {token}</h4>
-                </div>
+                <Modal.Dialog>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Hey! {email}</Modal.Title>
+                    </Modal.Header>
+
+                    <Modal.Body>
+                        <div>You are logged in successfully! <br/>Go to <a href="">Forms</a> to enter Details!</div>
+                    </Modal.Body>
+
+                    <Modal.Footer>
+                        <Button variant="secondary">Close</Button>
+                    </Modal.Footer>
+                </Modal.Dialog>
             </>
         )
     }
