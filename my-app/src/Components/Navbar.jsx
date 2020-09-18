@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import App from "./app"
 
 const NavbarWrapper = styled.div`
     box-shadow: 1px 1px 2px 2px rgba(68, 68, 68, 0.6);
@@ -29,7 +30,7 @@ class Navbar extends React.Component {
         }
     }
     render(){
-        const {handleToggle,show}=this.props
+        const {handleToggle}=this.props
     return (
         <>
             <NavbarWrapper>
@@ -77,6 +78,7 @@ class Navbar extends React.Component {
                         Register
                     </button>
                 </ButtonWrappers>
+                <App/>
             </NavbarWrapper>
         </>
         );

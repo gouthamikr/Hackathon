@@ -22,6 +22,7 @@ export default class DashBoard extends Component {
 
                     <Modal.Body>
                         <div>You are logged in successfully! <br/>Go to <a href="">Forms</a> to enter Details!</div>
+                        {/* <p>{token}</p> */}
                     </Modal.Body>
 
                     <Modal.Footer>
